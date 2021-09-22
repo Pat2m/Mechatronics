@@ -202,32 +202,39 @@ int green_light_pin = 10;
 int blue_light_pin = 9;
 int buttonPin = 22;
 int buttonState = 0;
+
+//creates a function to easily write out rgb values to the led
 void RGB_color(int red_light_value, int green_light_value, int blue_light_value)
  {
   analogWrite(red_light_pin, red_light_value);
   analogWrite(green_light_pin, green_light_value);
   analogWrite(blue_light_pin, blue_light_value);
 }
+
 boolean playSong(){
+  //iterate through entire song
    for (int currentNote = 0; currentNote < sizeof(noteDurations); currentNote++) {
     int beats = int(1000/noteDurations[currentNote]);//converts to milliseconds
     int temp = melody[currentNote];
+     //maping frequency to rgb values
     int tempR = map(temp, 0, 255, 0, 5000);
     int tempG = map(temp, 0, 255, 0, 5000);
     int tempB = map(temp, 0, 255, 0, 5000);
-    RGB_color(tempR, tempG, tempB);
-    tone(8, temp, beats);
+    RGB_color(tempR, tempG, tempB); //set color
+    tone(8, temp, beats); //change frequency
 
-    delay(beats);
-    RGB_color(0, 0, 0);
-    noTone(8);
-  } return true;
+    delay(beats); //hold for note duration
+    RGB_color(0, 0, 0); //reset led
+    noTone(8); //reset buzzer
+  } return true; //return a value in case if want to have a check later on for completness
  }
 void setup() {
   Serial.begin(9600);
+  //Set up RGB led
   pinMode(red_light_pin, OUTPUT);
   pinMode(green_light_pin, OUTPUT);
   pinMode(blue_light_pin, OUTPUT);
+  //Set up button
   pinMode(buttonPin, INPUT);
   }
 void loop() {
