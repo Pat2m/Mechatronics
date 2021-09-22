@@ -89,6 +89,7 @@
 #define note_D8  4699
 #define note_DS8 4978
 
+//music transcribed from https://www.virtualsheetmusic.com/score/HL-359773.html
 int melody[] = {
   note_E4, note_G4, note_A4, note_A4, 0,
     note_A4, note_B4, note_C5, note_C5, 0,
