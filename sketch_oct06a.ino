@@ -55,8 +55,8 @@ void gigi(int i){
     if(Serial.available() > 0){
      temp = Serial.parseInt();
     }
-    if (temp == 2){ speeds = speeds *-1;}
-    Serial.println(speeds);
+    if (temp == 2){ stepCount = stepCount *-1;}
+    Serial.println(stepCount);
   }
   else{
     stepper(speeds);
